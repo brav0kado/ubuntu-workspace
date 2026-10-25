@@ -196,6 +196,7 @@ Use `--user-tools` to skip system packages, or `--system-packages` to install on
 | --- | --- | --- |
 | Zsh | `Ctrl-R` | Fuzzy history search |
 | Zsh | `Tab` | Completion |
+| Zsh | `Ctrl-Left` / `Ctrl-Right` | Move backward / forward by word |
 | Zsh | Right arrow | Accept a suggestion |
 | Zsh | `z folder` | Jump to a visited directory |
 | Zsh | `ls` / `ll` / `la` | Icon listings / detailed / hidden files, when eza is installed |

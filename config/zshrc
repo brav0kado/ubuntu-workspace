@@ -44,3 +44,7 @@ if command -v eza >/dev/null; then
 else
   alias ls='ls --color=auto'
 fi
+
+# Ctrl+Arrow word navigation in terminals
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
