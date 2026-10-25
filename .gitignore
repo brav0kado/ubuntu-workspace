@@ -1,0 +1,13 @@
+# Local backups and generated files
+backups/
+__pycache__/
+*.py[cod]
+*.log
+.DS_Store
+
+# Credentials and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
