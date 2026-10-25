@@ -3,7 +3,7 @@ set -euo pipefail
 if (( EUID == 0 )); then echo "Run as your normal user, not with sudo." >&2; exit 1; fi
 base="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 if [[ ${1:-} == --dry-run ]]; then
-  echo "Install Ubuntu terminal packages; back up and deploy Zsh, tmux and LazyVim configs; install plugins; switch login shell after validation. GNOME settings are untouched."
+  echo "Install Ubuntu terminal packages; back up and deploy Zsh, tmux and LazyVim configs; install plugins; switch login shell after validation. Install the terminal appearance and apply Tokyo Night when Ptyxis is available."
   exit 0
 fi
 source /etc/os-release
@@ -27,9 +27,7 @@ cp "$base/config/tmux.conf" "$HOME/.tmux.conf"
 cp -a "$base/config/nvim" "$HOME/.config/nvim"
 # Preserve an existing Starship prompt, including on the laptop.
 [[ -e "$HOME/.config/starship.toml" ]] || cp "$base/config/starship.toml" "$HOME/.config/starship.toml"
-if ! command -v starship >/dev/null; then
-  echo "Starship is not installed; Zsh will use its standard prompt until Starship is installed."
-fi
+"$base/install-appearance.sh"
 zsh -n "$HOME/.zshrc"
 zsh -ic 'print "Zsh configuration loaded successfully"'
 nvim --headless '+Lazy! sync' +qa

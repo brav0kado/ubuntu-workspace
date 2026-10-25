@@ -22,7 +22,7 @@ Deep navy backgrounds, soft blue and purple accents, and readable text without a
 - **eza** — coloured file listings with icons and directories grouped first.
 - **Ptyxis** — a dark interface, normal cell spacing and an I-beam cursor.
 
-> **Work in progress:** the screenshots show the configured desktop. The scripts currently install the tools below and deploy configuration templates, but do not yet install Starship, eza or fonts, or apply Ptyxis appearance settings. Codex is shown in the preview and is not installed by these scripts. A unified laptop installer and a clean-machine test are still pending.
+> **Laptop appearance:** the terminal stage now installs Starship, eza, Ubuntu Mono and icon fonts, and applies Tokyo Night to the default Ptyxis profile. Other terminals need their palette selected manually. Codex in the screenshots is not installed. A clean-machine test and unified laptop installer are still pending.
 
 ## Getting started
 
@@ -46,6 +46,26 @@ Then run the stages you want, in order:
 ```
 
 Run as your normal user; the scripts request sudo for system packages. Network access is required. The terminal installer requires **Neovim 0.11.2 or newer**; the version available through apt depends on your Ubuntu release. Pinned research binaries currently support **Linux x86_64**.
+
+## Repair a plain laptop prompt
+
+If you see a plain `hostname%` prompt, update your checkout and run:
+
+```bash
+./install-appearance.sh --dry-run
+./install-appearance.sh
+exec zsh
+```
+
+This backs up and replaces `.zshrc` and the Starship configuration with the supplied templates. It installs:
+
+- **Starship** — prompt, installed through the [official installer](https://starship.rs/guide/).
+- **eza** — coloured listings and file icons.
+- **Ubuntu fonts** — Ubuntu Mono terminal text.
+- **Symbols Nerd Font Mono 3.4.0** — icon glyphs.
+- **fontconfig, curl, CA certificates and unzip** — font discovery and download support.
+
+Run from your desktop session so Ptyxis settings apply to your user. Other terminal applications display instructions for manual theme selection.
 
 ## Terminal & editor
 
@@ -71,7 +91,7 @@ Installs:
 - **xclip** — X11 clipboard utility.
 - **build-essential** — compiler and build tools.
 
-Deploys Zsh, tmux and Neovim templates, synchronizes LazyVim plugins, and copies the Starship template only when no existing Starship configuration is present. Existing configuration is backed up before replacement. GNOME terminal appearance settings are left unchanged.
+Deploys Zsh, tmux and Neovim templates, synchronizes LazyVim plugins, and copies the Starship template only when no existing Starship configuration is present. Existing configuration is backed up before replacement. The appearance stage applies the theme to the default Ptyxis profile when available.
 
 ## Languages & parsing
 
